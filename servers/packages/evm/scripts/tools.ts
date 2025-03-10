@@ -9,7 +9,7 @@ async function runGetNativeCoinBalance() {
     console.log(`ETH 余额: ${ethBalance}`);
 
     // 查询 BSC 余额
-    const bnbBalance = await getNativeCoinBalance(address, 56);
+    const bnbBalance = await getNativeCoinBalance(address, "bsc");
     console.log(`BNB 余额: ${bnbBalance}`);
 }
 

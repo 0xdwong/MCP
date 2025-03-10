@@ -17,7 +17,7 @@ server.tool(
   },
   async ({ address, chainName }) => {
     const balance = await getNativeCoinBalance(address, chainName);
-    
+
     return {
       content: [{
         type: "text",
@@ -26,7 +26,6 @@ server.tool(
     }
   }
 );
-
 
 async function main() {
   const transport = new StdioServerTransport();
