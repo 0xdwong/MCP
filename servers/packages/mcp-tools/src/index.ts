@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod";
+import { tools } from "./tools/index.js";
 
 // Create an MCP server
 const server = new McpServer({
@@ -9,25 +9,21 @@ const server = new McpServer({
 });
 
 
-server.tool(
-  "calculate-bmi",
-  {
-    weightKg: z.number(),
-    heightM: z.number()
-  },
-  async ({ weightKg, heightM }) => ({
-    content: [{
-      type: "text",
-      text: String(weightKg / (heightM * heightM))
-    }]
-  })
-);
+const MCPTools = {
+  bmi: tools.bmi,
+  weather: tools.weather,
+}
+
+
+for (const tool of Object.values(MCPTools)) {
+  server.tool(tool.name, tool.description, tool.paramsSchema, tool.cb);
+}
 
 
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("BMI MCP Server running on stdio");
+  console.error("MCP Server running on stdio");
 }
 
 main().catch((error) => {
