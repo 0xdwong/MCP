@@ -12,6 +12,7 @@ const server = new McpServer({
 const MCPTools = {
   bmi: tools.bmi,
   weather: tools.weather,
+  image: tools.image,
 }
 
 
