@@ -11,10 +11,12 @@
 ## 依赖项
 
 主要依赖：
+
 - @modelcontextprotocol/sdk: ^1.6.1
 - @mysten/sui: ^1.24.0
 
 开发依赖：
+
 - @modelcontextprotocol/inspector: ^0.6.0
 - TypeScript 相关工具
 
